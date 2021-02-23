@@ -10,7 +10,7 @@ import 'package:netart/View/Post/PostView.dart';
 
 class PostListView extends StatefulWidget {
   @override
-  _PostListViewState createState() => _PostListViewState("post/all");
+  _PostListViewState createState() => _PostListViewState("post/top");
 }
 
 class _PostListViewState extends State<PostListView> {
@@ -27,17 +27,20 @@ class _PostListViewState extends State<PostListView> {
   @override
   void initState() {
     super.initState();
-    Provider.of<ApiConnect>(context, listen: false)
-        .get(this.url)
-        .then((jsonResponse) {
-      jsonResponse.forEach((json) {
-        this.listPost.add(Post.fromJson(json));
-        this.nbrTile++;
+    try {
+      Provider.of<ApiConnect>(context, listen: false).get(this.url + "/100").then((res) {
+        res.forEach((json) {
+          this.listPost.add(Post.fromJson(json));
+          this.nbrTile++;
+        });
+        setState(() {
+          complet = true;
+        });
       });
-      setState(() {
-        complet = true;
-      });
-    });
+    }
+    catch (e) {
+
+    }
   }
 
   @override

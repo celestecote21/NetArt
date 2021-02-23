@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:netart/View/Post/PostView.dart';
 import 'package:provider/provider.dart';
 import 'package:netart/Services/ApiConnectService.dart';
 import 'package:netart/View/Post/PostListView.dart';
@@ -27,8 +29,9 @@ class _HomeScreenState extends State<HomeScreen> {
         }
       });
     }
+    var bodyContent = (isConnect) ? PostListView() : Center(child: SpinKitWave(color: Colors.red, size: 50,));
     return Scaffold(
-      body: PostListView(),
+      body: bodyContent,
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.pushNamed(context, '/newPost'),
         tooltip: 'Create a post',

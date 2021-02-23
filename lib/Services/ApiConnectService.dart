@@ -20,7 +20,7 @@ class ApiConnect extends ChangeNotifier {
   }
 
   void addToken(String token) {
-    headers["token"] = token;
+    headers["Authorization"] = "Bearer " + token;
   }
 
   Future<dynamic> get(String url) {
@@ -31,7 +31,7 @@ class ApiConnect extends ChangeNotifier {
       final int statusCode = response.statusCode;
 
       if (statusCode < 200 || statusCode > 400 || json == null) {
-        throw new Exception("Error while fetching data");
+        throw new Exception("Error while fetching data" + url + "  " + statusCode.toString());
       }
       return _decoder.convert(res);
     });

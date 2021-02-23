@@ -16,7 +16,7 @@ class Login {
           .then((jsonResponse) {
         if (jsonResponse["token"] != null) {
           Provider.of<ApiConnect>(context, listen: false).addToken(jsonResponse["token"]);
-          Navigator.pushNamed(context, '/');
+          Navigator.pop(context, true);
         } else {
           var errorMess = jsonResponse["message"] != null ? jsonResponse["message"] : "Invalid connection";
           Scaffold.of(context).showSnackBar(
@@ -24,6 +24,7 @@ class Login {
               content: Text(errorMess)
             )
           );
+          return false;
         }
       });
     }

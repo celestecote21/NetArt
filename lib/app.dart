@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
           routes: {
             '/': (BuildContext context) => HomeScreen(),
             '/login': (BuildContext context) => LoginPage(),
+            '/newPost': (BuildContext context) => NewPostView(),
           },
         ));
   }
