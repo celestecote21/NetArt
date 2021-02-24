@@ -1,10 +1,11 @@
-import 'package:netart/View/LoginView.dart';
-import 'package:netart/View/Post/PostView.dart';
 import 'package:netart/main.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:netart/Services/ApiConnectService.dart';
 import 'package:netart/View/HomeScreen.dart';
+import 'package:netart/View/LoginView.dart';
+import 'package:netart/View/SignUpView.dart';
+import 'package:netart/View/Post/NewPostView.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
           routes: {
             '/': (BuildContext context) => HomeScreen(),
             '/login': (BuildContext context) => LoginPage(),
+            '/signUp': (BuildContext context) => SignUpView(),
             '/newPost': (BuildContext context) => NewPostView(),
           },
         ));

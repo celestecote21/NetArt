@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 class ApiConnect extends ChangeNotifier {
   final JsonDecoder _decoder = new JsonDecoder();
   final JsonEncoder _encoder = new JsonEncoder();
-  final ApiUrl = "http://li1418-90.members.linode.com:5000/api/";
+  final ApiUrl = "http://li717-170.members.linode.com:5000/api/";
   Map<String, String> headers = {"content-type": "application/json"};
   FlutterSecureStorage storage;
 
@@ -42,13 +42,13 @@ class ApiConnect extends ChangeNotifier {
         .post(this.ApiUrl + url,
             body: _encoder.convert(body), headers: headers, encoding: encoding)
         .then((http.Response response) {
-      final String res_body = response.body;
+      final String resBody = response.body;
       final int statusCode = response.statusCode;
 
       if (statusCode < 200 || statusCode > 400 || json == null) {
         throw new Exception("Error while fetching data");
       }
-      return _decoder.convert(res_body);
+      return _decoder.convert(resBody);
     });
   }
 }

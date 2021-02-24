@@ -191,7 +191,7 @@ class FinalButton extends StatelessWidget {
   final formKey;
 
   void goSignUp(BuildContext context) {
-    Navigator.pushNamed(context, '/signup').then((_) {
+    Navigator.pushNamed(context, '/signUp').then((_) {
       Navigator.pop(context);
     });
   }

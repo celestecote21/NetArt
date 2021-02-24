@@ -22,7 +22,11 @@ class _HomeScreenState extends State<HomeScreen> {
           .then((notC) {
         if (notC) {
           Navigator.pushNamed(context, '/login').then((connec) {
-            setState(() => isConnect = connec);
+            setState(() => {
+              if (connec != null) {
+                isConnect = connec
+              }
+            });
           });
         } else {
           setState(() => isConnect = true);
