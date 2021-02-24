@@ -23,17 +23,21 @@ class _HomeScreenState extends State<HomeScreen> {
         if (notC) {
           Navigator.pushNamed(context, '/login').then((connec) {
             setState(() => {
-              if (connec != null) {
-                isConnect = connec
-              }
-            });
+                  if (connec != null) {isConnect = connec}
+                });
           });
         } else {
           setState(() => isConnect = true);
         }
       });
     }
-    var bodyContent = (isConnect) ? PostListView() : Center(child: SpinKitWave(color: Colors.red, size: 50,));
+    var bodyContent = (isConnect)
+        ? PostListView()
+        : Center(
+            child: SpinKitWave(
+            color: Colors.red,
+            size: 50,
+          ));
     return Scaffold(
       body: bodyContent,
       floatingActionButton: FloatingActionButton(

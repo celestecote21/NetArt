@@ -1,11 +1,9 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:netart/Services/ApiConnectService.dart';
 
 class Login {
-  static login (context, formKey, usernameController, passwordController) {
+  static login(context, formKey, usernameController, passwordController) {
     if (formKey.currentState.validate()) {
       var postJson = {
         "Username": usernameController.text, // put the mail all in lower case
@@ -15,15 +13,16 @@ class Login {
           .post("home/login", body: postJson)
           .then((jsonResponse) {
         if (jsonResponse["token"] != null) {
-          Provider.of<ApiConnect>(context, listen: false).addToken(jsonResponse["token"]);
-          Navigator.pop(context, true);
+          Provider.of<ApiConnect>(context, listen: false)
+              .updateApiConnect(usernameController.text, jsonResponse["token"])
+              .then((_) {
+            Navigator.pop(context, true);
+          });
         } else {
-          var errorMess = jsonResponse["message"] != null ? jsonResponse["message"] : "Invalid connection";
-          Scaffold.of(context).showSnackBar(
-            SnackBar(
-              content: Text(errorMess)
-            )
-          );
+          var errorMess = jsonResponse["message"] != null
+              ? jsonResponse["message"]
+              : "Invalid connection";
+          Scaffold.of(context).showSnackBar(SnackBar(content: Text(errorMess)));
           return false;
         }
       });

@@ -47,18 +47,16 @@ class _LoginPageState extends State<LoginPage> {
               ),
             )),
             EmailInput(
-              controller: this.userNameController,
-              nextFocus: this.passwordFocus
-            ),
+                controller: this.userNameController,
+                nextFocus: this.passwordFocus),
             PasswordInput(
-              usernameController: this.userNameController,
-              passwordController : this.passwordController,
-              formKey: this._formKey,
-              focusNode: this.passwordFocus
-            ),
+                usernameController: this.userNameController,
+                passwordController: this.passwordController,
+                formKey: this._formKey,
+                focusNode: this.passwordFocus),
             FinalButton(
               usernameController: this.userNameController,
-              passwordController : this.passwordController,
+              passwordController: this.passwordController,
               formKey: this._formKey,
             ),
           ],
@@ -66,7 +64,6 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
-
 }
 
 class EmailInput extends StatelessWidget {
@@ -110,7 +107,6 @@ class EmailInput extends StatelessWidget {
 }
 
 class PasswordInput extends StatelessWidget {
-
   const PasswordInput({
     Key key,
     this.usernameController,
@@ -154,7 +150,8 @@ class PasswordInput extends StatelessWidget {
                     }
                     return null;
                   },
-                  onEditingComplete: () => Login.login(context, formKey, usernameController, passwordController),
+                  onEditingComplete: () => Login.login(
+                      context, formKey, usernameController, passwordController),
                 ),
                 // Password Restore
                 InkWell(
@@ -177,9 +174,7 @@ class PasswordInput extends StatelessWidget {
   }
 }
 
-
 class FinalButton extends StatelessWidget {
-
   const FinalButton({
     Key key,
     this.usernameController,
@@ -207,7 +202,8 @@ class FinalButton extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30),
                 child: RaisedButton(
-                  onPressed: () => Login.login(context, formKey, usernameController, passwordController),
+                  onPressed: () => Login.login(
+                      context, formKey, usernameController, passwordController),
                   child: Text('Login'),
                 ),
               ),

@@ -25,7 +25,9 @@ class _PostListViewState extends State<PostListView> {
   void initState() {
     super.initState();
     try {
-      Provider.of<ApiConnect>(context, listen: false).get(this.url + "/100").then((res) {
+      Provider.of<ApiConnect>(context, listen: false)
+          .get(this.url + "/100")
+          .then((res) {
         res.forEach((json) {
           this.listPost.add(Post.fromJson(json));
           this.nbrTile++;
@@ -34,10 +36,7 @@ class _PostListViewState extends State<PostListView> {
           complet = true;
         });
       });
-    }
-    catch (e) {
-
-    }
+    } catch (e) {}
   }
 
   @override

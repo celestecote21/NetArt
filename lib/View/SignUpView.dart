@@ -64,14 +64,16 @@ class _SignUpViewState extends State<SignUpViewIntern> {
           print(jsonResponse);
           if (jsonResponse["token"] != null) {
             print("sign_up ok");
-            Provider.of<ApiConnect>(context, listen: false).addToken(jsonResponse["token"]);
-            Navigator.pop(context, true);
+            Provider.of<ApiConnect>(context, listen: false)
+                .updateApiConnect(
+                    userNameController.text, jsonResponse["token"])
+                .then((_) {
+              Navigator.pop(context, true);
+            });
           } else {
-            Scaffold.of(context).showSnackBar(
-              SnackBar(
-                content: Text(jsonResponse["message"]),
-              )
-            );
+            Scaffold.of(context).showSnackBar(SnackBar(
+              content: Text(jsonResponse["message"]),
+            ));
           }
         });
       } catch (e) {
