@@ -18,9 +18,11 @@ class PostSender {
         if (jsonResponse["message"] != null) {
           Scaffold.of(context)
               .showSnackBar(SnackBar(content: Text(jsonResponse["message"])));
-          Navigator.pushNamed(context, "/");
+          // Navigator.pushNamed(context, "/");
+          Navigator.pop(context, true);
         }
-        Navigator.pushNamed(context, "/");
+        Navigator.pop(context, true);
+        //Navigator.pushNamed(context, "/");
       });
     }
   }

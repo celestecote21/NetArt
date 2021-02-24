@@ -58,6 +58,30 @@ class _PostListViewState extends State<PostListView> {
       slivers: <Widget>[
         SliverAppBar(
           title: Text('Last Posts'),
+          actions: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.refresh),
+              tooltip: 'refresh posts',
+              onPressed: () {
+                setState(() => complet = false);
+                listPost.clear();
+                nbrTile = 0;
+                try {
+                  Provider.of<ApiConnect>(context, listen: false)
+                      .get(this.url + "/100")
+                      .then((res) {
+                    res.forEach((json) {
+                      this.listPost.add(Post.fromJson(json));
+                      this.nbrTile++;
+                    });
+                    setState(() {
+                      complet = true;
+                    });
+                  });
+                } catch (e) {}
+              },
+            ),
+          ],
         ),
         SliverList(
           key: centerKey,
